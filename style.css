@@ -1,0 +1,78 @@
+body {
+    font-family: 'Open Sans', sans-serif; /* Fonte padrão do corpo */
+    padding-top: 56px; /* Espaço para a navbar fixa */
+}
+
+/* Navbar */
+.navbar-brand {
+    font-family: 'Playfair Display', serif; /* Fonte para o logo */
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 700; /* Links da navbar em negrito */
+}
+
+/* Hero Section */
+#hero {
+    background-image: url('https://images.unsplash.com/photo-1579717614053-a18545814ac3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Imagem de fundo de cinema */
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh; /* Ocupa a altura total da viewport */
+    position: relative;
+    overflow: hidden; /* Garante que o overlay não vaze */
+}
+
+.hero .container {
+    z-index: 1; /* Garante que o conteúdo fique acima do overlay */
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6); /* Escurece a imagem de fundo */
+    z-index: 0;
+}
+
+/* Estilo para títulos de seção */
+section h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    color: #343a40; /* Cor escura para os títulos */
+}
+
+/* Estilos gerais das seções */
+section {
+    padding: 80px 0; /* Espaçamento vertical para as seções */
+    scroll-margin-top: 56px; /* Compensa a navbar fixa para o scroll suave */
+}
+
+#filme-favorito img,
+#top-filmes .card img {
+    object-fit: cover; /* Garante que as imagens preencham o espaço mantendo proporção */
+}
+
+#filme-favorito img {
+    height: 500px; /* Altura fixa para a capa do filme favorito */
+    width: 100%; /* Largura total da coluna */
+}
+
+#top-filmes .card img {
+    height: 350px; /* Altura fixa para as capas da seleção de ouro */
+}
+
+#gamas-cinema .card img {
+    height: 200px; /* Altura fixa para as fotos de diretores/atores */
+    width: 200px; /* Largura fixa para as fotos de diretores/atores */
+    object-fit: cover;
+    border: 3px solid #ffc107; /* Borda dourada sutil */
+}
+
+/* Estilos para as citações */
+blockquote {
+    border-left: 5px solid #ffc107; /* Linha dourada à esquerda da citação */
+    padding-left: 15px;
+}
