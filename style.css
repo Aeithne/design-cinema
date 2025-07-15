@@ -1,6 +1,7 @@
 body {
     font-family: 'Open Sans', sans-serif; /* Fonte padrão do corpo */
     padding-top: 56px; /* Espaço para a navbar fixa */
+    overflow-x: hidden; /* Evita scroll horizontal indesejado */
 }
 
 /* Navbar */
@@ -18,9 +19,10 @@ body {
     background-image: url('https://images.unsplash.com/photo-1579717614053-a18545814ac3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Imagem de fundo de cinema */
     background-size: cover;
     background-position: center;
-    min-height: 100vh; /* Ocupa a altura total da viewport */
+    min-height: calc(100vh - 56px); /* Ocupa a altura restante da viewport, descontando a navbar */
     position: relative;
     overflow: hidden; /* Garante que o overlay não vaze */
+    padding-top: 56px; /* Ajuste para o conteúdo não ficar por baixo da navbar */
 }
 
 .hero .container {
@@ -47,8 +49,23 @@ section h2 {
 /* Estilos gerais das seções */
 section {
     padding: 80px 0; /* Espaçamento vertical para as seções */
-    scroll-margin-top: 56px; /* Compensa a navbar fixa para o scroll suave */
+    /* Removido scroll-margin-top */
 }
+
+/* --- Novas Regras CSS para Seções Ativas/Inativas --- */
+.hidden-section {
+    display: none; /* Esconde a seção por padrão */
+    opacity: 0;
+    transform: translateY(20px); /* Para efeito de transição sutil */
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição de opacidade e movimento */
+}
+
+.active-section {
+    display: block; /* Mostra a seção ativa */
+    opacity: 1;
+    transform: translateY(0);
+}
+/* --- Fim das Novas Regras CSS --- */
 
 #filme-favorito img,
 #top-filmes .card img {
