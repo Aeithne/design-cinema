@@ -1,32 +1,50 @@
+/* NOVO: Garante que html e body ocupem toda a altura para que vh funcione */
+html, body {
+    height: 100%;
+}
+
 body {
-    font-family: 'Open Sans', sans-serif; /* Fonte padrão do corpo */
-    padding-top: 56px; /* Espaço para a navbar fixa */
-    overflow-x: hidden; /* Evita scroll horizontal indesejado */
+    font-family: 'Open Sans', sans-serif;
+    padding-top: 56px;
+    overflow-x: hidden;
 }
 
 /* Navbar */
 .navbar-brand {
-    font-family: 'Playfair Display', serif; /* Fonte para o logo */
+    font-family: 'Playfair Display', serif;
     font-weight: 700;
 }
 
 .nav-link {
-    font-weight: 700; /* Links da navbar em negrito */
+    font-weight: 700;
+}
+
+footer {
+    max-height: 80px;
 }
 
 /* Hero Section */
 #hero {
-    background-image: url('https://images.unsplash.com/photo-1579717614053-a18545814ac3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D'); /* Imagem de fundo de cinema */
+    background-image: url('https://images.unsplash.com/photo-1579717614053-a18545814ac3?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
     background-size: cover;
     background-position: center;
-    min-height: calc(100vh - 56px); /* Ocupa a altura restante da viewport, descontando a navbar */
     position: relative;
-    overflow: hidden; /* Garante que o overlay não vaze */
-    padding-top: 56px; /* Ajuste para o conteúdo não ficar por baixo da navbar */
+    overflow: hidden;
+    padding-top: 56px;
+    padding-bottom: 80px;
 }
 
+/* NOVO: Aplica os estilos de Hero em tela cheia SOMENTE quando a Hero Section está ativa */
+#hero.active-section {
+    min-height: calc(100vh - 56px); /* Ocupa a altura restante da viewport, descontando a navbar */
+    display: flex; /* Transforma em flexbox */
+    align-items: center; /* Alinha conteúdo verticalmente ao centro */
+    justify-content: center; /* Alinha conteúdo horizontalmente ao centro */
+}
+
+
 .hero .container {
-    z-index: 1; /* Garante que o conteúdo fique acima do overlay */
+    z-index: 1;
 }
 
 .overlay {
@@ -35,7 +53,7 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6); /* Escurece a imagem de fundo */
+    background-color: rgba(0, 0, 0, 0.6);
     z-index: 0;
 }
 
@@ -43,53 +61,72 @@ body {
 section h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #343a40; /* Cor escura para os títulos */
+    color: #343a40;
 }
 
 /* Estilos gerais das seções */
 section {
-    padding: 80px 0; /* Espaçamento vertical para as seções */
-    /* Removido scroll-margin-top */
+    padding: 80px 0;
 }
 
-/* --- Novas Regras CSS para Seções Ativas/Inativas --- */
+/* --- Regras CSS para Seções Ativas/Inativas --- */
 .hidden-section {
     display: none; /* Esconde a seção por padrão */
     opacity: 0;
-    transform: translateY(20px); /* Para efeito de transição sutil */
-    transition: opacity 0.5s ease-out, transform 0.5s ease-out; /* Transição de opacidade e movimento */
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
 }
 
 .active-section {
-    display: block; /* Mostra a seção ativa */
+    /* display: block; já definido ou flexbox conforme #hero.active-section */
     opacity: 1;
     transform: translateY(0);
 }
-/* --- Fim das Novas Regras CSS --- */
+/* --- Fim das Regras CSS --- */
 
 #filme-favorito img,
 #top-filmes .card img {
-    object-fit: cover; /* Garante que as imagens preencham o espaço mantendo proporção */
+    object-fit: cover;
 }
 
 #filme-favorito img {
-    height: 500px; /* Altura fixa para a capa do filme favorito */
-    width: 100%; /* Largura total da coluna */
+    height: 500px;
+    width: 100%;
 }
 
 #top-filmes .card img {
-    height: 350px; /* Altura fixa para as capas da seleção de ouro */
+    height: 350px;
 }
 
 #gamas-cinema .card img {
-    height: 200px; /* Altura fixa para as fotos de diretores/atores */
-    width: 200px; /* Largura fixa para as fotos de diretores/atores */
+    height: 200px;
+    width: 200px;
     object-fit: cover;
-    border: 3px solid #ffc107; /* Borda dourada sutil */
+    border: 3px solid #ffc107;
 }
 
 /* Estilos para as citações */
 blockquote {
-    border-left: 5px solid #ffc107; /* Linha dourada à esquerda da citação */
+    border-left: 5px solid #ffc107;
     padding-left: 15px;
+}
+
+/* Estilos gerais das seções */
+section {
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+
+/* --- Regras CSS para Seções Ativas/Inativas --- */
+.hidden-section {
+    display: none; /* Esconde a seção por padrão */
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}
+
+.active-section {
+    opacity: 1;
+    transform: translateY(0);
 }
