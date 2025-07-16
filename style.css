@@ -41,13 +41,6 @@ footer {
     background-image: url('./images/cinema-audience.svg');
 }
 
-.card {
-    background-image: url('./images/movie-frame.svg');
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
 /* NOVO: Aplica os estilos de Hero em tela cheia SOMENTE quando a Hero Section está ativa */
 #hero.active-section {
     min-height: calc(100vh - 56px); /* Ocupa a altura restante da viewport, descontando a navbar */
@@ -98,23 +91,9 @@ section {
 }
 /* --- Fim das Regras CSS --- */
 
-#filme-favorito img,
-#top-filmes .card img {
-    object-fit: cover;
-}
-
 #filme-favorito img {
     height: 500px;
     width: 100%;
-}
-
-#top-filmes .card img {
-    height: 75px;
-}
-
-#gamas-cinema .card img {
-    height: 75px;
-    width: 75px;
 }
 
 /* Estilos para as citações */
@@ -190,7 +169,7 @@ section {
     /* TRUQUE PARA PROPORÇÃO 16:9 */
     padding-top: 56.25%; /* (9 / 16) * 100 = 56.25% */
     height: 0; /* Essencial para o truque funcionar */
-    overflow: hidden; /* Esconde o conteúdo que transborda, o scroll será no inner-content */
+    overflow: inherit; /* Esconde o conteúdo que transborda, o scroll será no inner-content */
     border-radius: 4px; /* Levemente arredondado para a "tela" interna */
 }
 
@@ -200,7 +179,6 @@ section {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
     height: 100%; /* Ocupa 100% da altura do wrapper com proporção */
     overflow-y: auto; /* ATIVA O SCROLL INTERNO QUANDO NECESSÁRIO */
     padding-right: 0px; /* Compensa a largura da scrollbar */
@@ -232,6 +210,95 @@ section {
         padding: 15px; /* Diminui o "bezel" em telas pequenas */
         margin: 20px auto;
     }
-    /* A proporção 16:9 e o scroll interno SÃO MANTIDOS nesta resolução. */
-    /* Apenas o padding do bezel é reduzido. */
+    .movie-screen-content-wrapper {
+        padding-top: 75%; 
+    }
+}
+
+@media (max-width: 576px) { /* Exemplo: Para tablets e celulares */
+    .movie-screen-frame {
+        padding: 10px; /* Diminui o "bezel" em telas pequenas */
+        margin: 15px auto;
+    }
+    .movie-screen-content-wrapper {
+        padding-top: 100%;
+    }
+}
+
+/* Seção para Top Filmes - GARANTE QUE AS COLUNAS POSSAM SE ALINHAR VERTICALMENTE */
+#top-filmes .row {
+    display: flex; /* Torna a linha um flex container */
+    flex-wrap: wrap; /* Permite que as colunas quebrem para a próxima linha em telas menores */
+    align-items: stretch; /* Essencial: Faz com que todos os itens flex (suas .col) se estiquem para a altura do item mais alto */
+}
+
+/* Ajustes para cada coluna do Bootstrap */
+#top-filmes .col {
+    display: flex; /* Torna a coluna um flex container */
+    flex-direction: column; /* Para que o card dentro da coluna se organize verticalmente */
+}
+
+/* O card em si (o container completo da moldura e do título) */
+#top-filmes .card {
+    background-color: #0d0d0d;
+    border: none;
+    color: #fff;
+    display: flex;
+    flex-direction: column; /* Coloca o container da imagem e o card-body um abaixo do outro */
+    height: 100%; /* Faz o card ocupar 100% da altura da sua coluna (.col) */
+    overflow: hidden; /* Importante para garantir que nada saia do card, especialmente com bordas arredondadas */
+}
+
+/* Container para o SVG da moldura e a imagem do pôster */
+.movie-poster-container {
+    position: relative;
+    width: 100%; /* Ocupa a largura total disponível no card */
+    
+    /* Proporção EXATA do seu SVG (Altura / Largura = 450 / 300 = 1.5 -> 150%) */
+    padding-top: 150%; 
+    height: 0; /* Essencial para o truque de proporção */
+    overflow: hidden; /* Garante que nada vaze deste container */
+    background-color: #000; /* Fundo para a área do container, antes de carregar o SVG */
+}
+
+/* O SVG da moldura (o "./images/movie-frame.svg") */
+.movie-frame-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* Garante que o SVG inteiro caiba neste container sem ser cortado ou distorcido */
+    z-index: 2; /* Garante que a moldura SVG fique por cima da imagem do pôster */
+}
+
+.movie-poster-image {
+    position: absolute;
+    /* Valores iniciais, serão sobrescritos pelo JS */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Fallback, o JS pode ajustar isso */
+    z-index: 1; /* Abaixo do overlay */
+    border-radius: 4px; /* Opcional */
+}
+
+/* O corpo do card (onde fica o título do filme) */
+.card-body {
+    flex-grow: 1; /* Permite que o card-body ocupe todo o espaço vertical restante no card */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centraliza o título verticalmente dentro do espaço disponível */
+    align-items: center; /* Centraliza o título horizontalmente */
+    padding: 1rem; /* Adiciona um padding padrão para o texto */
+}
+
+/* Garante que os títulos dos cards sejam visíveis e centralizados */
+.card-title {
+    font-family: 'Playfair Display', serif; /* Mantém a fonte dos títulos */
+    font-weight: 700;
+    color: #fff; /* Cor do texto branco */
+    text-align: center;
+    margin-bottom: 0; /* Remove margem inferior extra se não for necessária */
 }

@@ -66,6 +66,9 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    
+
     // Garante que a primeira seção (Hero) esteja visível ao carregar a página
     showSection('hero');
 });
+
