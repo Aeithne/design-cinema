@@ -68,7 +68,7 @@ footer {
 section h2 {
     font-family: 'Playfair Display', serif;
     font-weight: 700;
-    color: #343a40;
+    color: #ffc;
 }
 
 /* Estilos gerais das seções */
@@ -239,7 +239,7 @@ section {
 }
 
 /* O card em si (o container completo da moldura e do título) */
-#top-filmes .card {
+#top-filmes .card, #gamas-cinema .card {
     background-color: #0d0d0d;
     border: none;
     color: #fff;
@@ -255,7 +255,7 @@ section {
     width: 100%; /* Ocupa a largura total disponível no card */
     
     /* Proporção EXATA do seu SVG (Altura / Largura = 450 / 300 = 1.5 -> 150%) */
-    padding-top: 150%; 
+    padding-top: 66.6%; 
     height: 0; /* Essencial para o truque de proporção */
     overflow: hidden; /* Garante que nada vaze deste container */
     background-color: #000; /* Fundo para a área do container, antes de carregar o SVG */
