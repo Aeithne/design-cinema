@@ -182,3 +182,56 @@ section {
     filter: blur(5px);
     opacity: 0.8;
 }
+
+/* --- ESTILOS PARA A TELA INTERNA (movie-screen-content-wrapper) --- */
+.movie-screen-content-wrapper {
+    position: relative;
+    width: 100%;
+    /* TRUQUE PARA PROPORÇÃO 16:9 */
+    padding-top: 56.25%; /* (9 / 16) * 100 = 56.25% */
+    height: 0; /* Essencial para o truque funcionar */
+    overflow: hidden; /* Esconde o conteúdo que transborda, o scroll será no inner-content */
+    border-radius: 4px; /* Levemente arredondado para a "tela" interna */
+}
+
+/* --- ESTILOS PARA O CONTEÚDO DENTRO DA TELA INTERNA --- */
+/* Alvo o .row que está dentro do wrapper - é o seu conteúdo rolável */
+.movie-screen-content-wrapper > .row {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* Ocupa 100% da altura do wrapper com proporção */
+    overflow-y: auto; /* ATIVA O SCROLL INTERNO QUANDO NECESSÁRIO */
+    padding-right: 0px; /* Compensa a largura da scrollbar */
+    padding-bottom: 0px; /* Pequeno padding para o final do conteúdo */
+}
+
+/* Opcional: Estilo para a scrollbar (apenas Webkit - Chrome/Safari) */
+.movie-screen-content-wrapper > .row::-webkit-scrollbar {
+    width: 8px;
+}
+
+.movie-screen-content-wrapper > .row::-webkit-scrollbar-track {
+    background: #222;
+    border-radius: 10px;
+}
+
+.movie-screen-content-wrapper > .row::-webkit-scrollbar-thumb {
+    background: #555;
+    border-radius: 10px;
+}
+
+.movie-screen-content-wrapper > .row::-webkit-scrollbar-thumb:hover {
+    background: #777;
+}
+
+/* --- Responsividade: APENAS ajusta o padding do frame em telas pequenas --- */
+@media (max-width: 768px) { /* Exemplo: Para tablets e celulares */
+    .movie-screen-frame {
+        padding: 15px; /* Diminui o "bezel" em telas pequenas */
+        margin: 20px auto;
+    }
+    /* A proporção 16:9 e o scroll interno SÃO MANTIDOS nesta resolução. */
+    /* Apenas o padding do bezel é reduzido. */
+}
