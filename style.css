@@ -176,6 +176,7 @@ section {
 /* --- ESTILOS PARA O CONTEÚDO DENTRO DA TELA INTERNA --- */
 /* Alvo o .row que está dentro do wrapper - é o seu conteúdo rolável */
 .movie-screen-content-wrapper > .row {
+    margin-top: 8px;
     position: absolute;
     top: 0;
     left: 0;
